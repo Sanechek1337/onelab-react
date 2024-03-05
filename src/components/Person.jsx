@@ -1,15 +1,27 @@
-import styled from "styled-components";
+export default function Person({ person, data, setData }) {
+  const handleDelete = () => {
+    const filteredData = data.filter((elem) => {
+      if (JSON.stringify(elem) === JSON.stringify(person)) {
+        sessionStorage.removeItem("list");
 
-export default function Person({ person }) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    sessionStorage.setItem("list", JSON.stringify(filteredData));
+    setData(filteredData);
+  };
+
   return (
-    <StyledContainer vip={person.name === "name"}>
-      <p>{person.name}</p>
-      <p>{person.surname}</p>
-      <p>{person.phone}</p>
-    </StyledContainer>
+    <tr>
+      <td>{person.name}</td>
+      <td>{person.surname}</td>
+      <td>{person.phone}</td>
+      <td>
+        <button onClick={handleDelete}>Delete</button>
+      </td>
+    </tr>
   );
 }
-
-const StyledContainer = styled("div")`
-  background-color: ${(props) => (props.vip ? "green" : "red")};
-`;
