@@ -29,7 +29,7 @@ function App() {
 }
 
 const StyledAppContainer = styled("div")`
-  background-color: #03688b;
+  background-color: #7585b6;
   width: 100vw;
   height: 100vh;
   display: flex;

@@ -24,11 +24,13 @@ const StyledLink = styled(Link)`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: #1f7b67;
-  color: white;
+  background-color: #9e9e9e;
+  color: #fff;
   text-decoration: none;
   font-size: 20px;
+  font-weight: 500;
+  padding: 0 10px;
   &:hover {
-    background-color: #25947c;
+    background-color: #8f8f8f;
   }
 `;
