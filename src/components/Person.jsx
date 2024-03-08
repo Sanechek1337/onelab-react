@@ -1,24 +1,18 @@
-export default function Person({ person, data, setData }) {
+import { useDispatch } from 'react-redux';
+import { removePerson } from '../store/person/personsSlice';
+
+export default function Person({ person }) {
+  const dispatch = useDispatch();
+
   const handleDelete = () => {
-    const filteredData = data.filter((elem) => {
-      if (JSON.stringify(elem) === JSON.stringify(person)) {
-        sessionStorage.removeItem("list");
-
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    sessionStorage.setItem("list", JSON.stringify(filteredData));
-    setData(filteredData);
+    dispatch(removePerson(person));
   };
 
   return (
     <tr>
       <td>{person.name}</td>
       <td>{person.surname}</td>
-      <td>{person.phone}</td>
+      <td>{person.phoneNumber}</td>
       <td>
         <button onClick={handleDelete}>Delete</button>
       </td>
