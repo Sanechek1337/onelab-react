@@ -1,68 +1,67 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { addPerson } from '../store/person/personsSlice';
 
 export default function Add() {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [phone, setPhone] = useState("");
-
   const navigateTo = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+  const [personFormData, setPersonFormData] = useState({
+    name: '',
+    surname: '',
+    phoneNumber: '',
+  });
 
-  const handleSurnameChange = (event) => {
-    setSurname(event.target.value);
-  };
+  const handleInputChange = (event) => {
+    setPersonFormData((prevState) => {
+      const newFormData = { ...prevState };
+      newFormData[event.target.name] = event.target.value;
 
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
+      return newFormData;
+    });
   };
 
   const onSave = () => {
-    let list = sessionStorage.getItem("list");
-    if (!list) {
-      list = [];
-    } else {
-      list = JSON.parse(list);
-    }
-    list.push({
-      name,
-      surname,
-      phone,
-    });
-    sessionStorage.setItem("list", JSON.stringify(list));
-    alert(`Пользователь ${name} добавлен`);
-    navigateTo("/");
+    dispatch(addPerson(personFormData));
+
+    alert(`Пользователь ${personFormData.name} добавлен`);
+    navigateTo('/');
   };
 
   return (
     <StyledFormContainer>
       <StyledForm>
         <StyledInput
-          value={name}
-          onChange={handleNameChange}
+          value={personFormData.name}
+          onChange={handleInputChange}
           type="text"
           name="name"
           placeholder="First Name"
         />
         <StyledInput
-          value={surname}
-          onChange={handleSurnameChange}
+          value={personFormData.surname}
+          onChange={handleInputChange}
           type="text"
           name="surname"
           placeholder="Last Name"
         />
         <StyledInput
-          value={phone}
-          onChange={handlePhoneChange}
+          value={personFormData.phoneNumber}
+          onChange={handleInputChange}
           type="text"
-          name="phonenumber"
+          name="phoneNumber"
           placeholder="Phone Number"
         />
-        <StyledButton onClick={onSave} disabled={!name || !surname || !phone}>
+        <StyledButton
+          onClick={onSave}
+          disabled={
+            !personFormData.name ||
+            !personFormData.surname ||
+            !personFormData.phoneNumber
+          }
+        >
           Save
         </StyledButton>
       </StyledForm>
@@ -70,7 +69,7 @@ export default function Add() {
   );
 }
 
-const StyledFormContainer = styled("div")`
+const StyledFormContainer = styled('div')`
   width: 350px;
   height: 500px;
   display: flex;
@@ -81,20 +80,20 @@ const StyledFormContainer = styled("div")`
   border-radius: 12px;
 `;
 
-const StyledForm = styled("div")`
+const StyledForm = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
-const StyledInput = styled("input")`
+const StyledInput = styled('input')`
   padding: 6px 12px;
   border-radius: 8px;
   border: 2px solid #808080;
   font-size: 18px;
 `;
 
-const StyledButton = styled("button")`
+const StyledButton = styled('button')`
   align-self: center;
   padding: 8px 20px;
   background-color: #40486d;
