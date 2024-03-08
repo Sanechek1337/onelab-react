@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   personsList: [],
@@ -9,14 +10,11 @@ export const personsSlice = createSlice({
   initialState,
   reducers: {
     addPerson: (state, action) => {
-      state.personsList.push(action.payload);
+      state.personsList.push({ ...action.payload, id: uuidv4() });
     },
     removePerson: (state, action) => {
       state.personsList = state.personsList.filter(
-        (person) =>
-          person.name !== action.payload.name ||
-          person.surname !== action.payload.surname ||
-          person.phoneNumber !== action.payload.phoneNumber
+        (person) => person.id !== action.payload.id
       );
     },
   },
