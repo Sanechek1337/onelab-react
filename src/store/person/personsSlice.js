@@ -1,27 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  persons: [],
-}
+  personsList: [],
+};
 
 export const personsSlice = createSlice({
   name: 'persons',
   initialState,
   reducers: {
     addPerson: (state, action) => {
-      state.persons.push(action.payload)
+      state.personsList.push(action.payload);
     },
     removePerson: (state, action) => {
-      state.persons = state.persons.filter(
+      state.personsList = state.personsList.filter(
         (person) =>
-          person.name !== action.payload.name &&
-          person.surname !== action.payload.surname &&
-          person.phone !== action.payload.phone
-      )
+          person.name !== action.payload.name ||
+          person.surname !== action.payload.surname ||
+          person.phoneNumber !== action.payload.phoneNumber
+      );
     },
   },
-})
+});
 
-export const { addPerson, removePerson } = personsSlice.actions
+export const { addPerson, removePerson } = personsSlice.actions;
 
-export default personsSlice.reducer
+export default personsSlice.reducer;
