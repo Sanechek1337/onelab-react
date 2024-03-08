@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Person from "../components/Person";
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import Person from '../components/Person';
 
 export default function List() {
-  const [data, setData] = useState([]);
+  const personsList = useSelector((state) => state.persons.personsList);
 
-  useEffect(() => {
-    let list = sessionStorage.getItem("list");
-    if (!list) {
-      list = [];
-    } else {
-      list = JSON.parse(list);
-    }
-    setData(list);
-  }, []);
-
-  if (data.length <= 0) return <p>Нет данных</p>;
+  if (personsList.length <= 0) return <p>Нет данных</p>;
 
   return (
     <StyledTable>
@@ -29,15 +19,15 @@ export default function List() {
       </thead>
 
       <tbody>
-        {data.map((person, index) => (
-          <Person person={person} key={index} data={data} setData={setData} />
+        {personsList.map((person) => (
+          <Person person={person} key={person.phoneNumber} />
         ))}
       </tbody>
     </StyledTable>
   );
 }
 
-const StyledTable = styled("table")`
+const StyledTable = styled('table')`
   border-collapse: collapse;
   background-color: #fff;
   text-align: center;
