@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import toast from 'react-hot-toast';
 import { addPerson } from '../store/person/personsSlice';
 
 export default function Add() {
@@ -29,13 +30,18 @@ export default function Add() {
       personFormData.surname.trim() === '' ||
       personFormData.phoneNumber.trim() === ''
     ) {
-      return;
+      toast.error('Please fill in all fields');
+    } else {
+      dispatch(addPerson(personFormData));
+
+      toast(
+        <div>
+          User <StyledName>{personFormData.name}</StyledName> has been added
+        </div>
+      );
+
+      setPersonFormData({ name: '', surname: '', phoneNumber: '' });
     }
-
-    dispatch(addPerson(personFormData));
-
-    alert(`Пользователь ${personFormData.name} добавлен`);
-    navigateTo('/');
   };
 
   return (
@@ -173,4 +179,9 @@ const StyledButton = styled('button')`
     color: #343434;
     box-shadow: none;
   }
+`;
+
+const StyledName = styled('span')`
+  color: #ffd700;
+  font-style: italic;
 `;
