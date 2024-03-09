@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
   );
 }
 
-const StyledNav = styled("nav")`
+const StyledNav = styled('nav')`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +27,7 @@ const StyledLink = styled(Link)`
   background-color: #9e9e9e;
   color: #fff;
   text-decoration: none;
+  text-align: center;
   font-size: 20px;
   font-weight: 500;
   padding: 0 10px;
