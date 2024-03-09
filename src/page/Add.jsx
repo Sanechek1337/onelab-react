@@ -35,27 +35,39 @@ export default function Add() {
       <StyledForm>
         <StyledTitle>Add person</StyledTitle>
 
-        <StyledInput
-          value={personFormData.name}
-          onChange={handleInputChange}
-          type="text"
-          name="name"
-          placeholder="First Name"
-        />
-        <StyledInput
-          value={personFormData.surname}
-          onChange={handleInputChange}
-          type="text"
-          name="surname"
-          placeholder="Last Name"
-        />
-        <StyledInput
-          value={personFormData.phoneNumber}
-          onChange={handleInputChange}
-          type="text"
-          name="phoneNumber"
-          placeholder="Phone Number"
-        />
+        <StyledInputContainer>
+          <StyledInput
+            value={personFormData.name}
+            onChange={handleInputChange}
+            type="text"
+            name="name"
+            required
+          />
+          <StyledLabel htmlFor="name">Name</StyledLabel>
+        </StyledInputContainer>
+
+        <StyledInputContainer>
+          <StyledInput
+            value={personFormData.surname}
+            onChange={handleInputChange}
+            type="text"
+            name="surname"
+            required
+          />
+          <StyledLabel htmlFor="surname">Surname</StyledLabel>
+        </StyledInputContainer>
+
+        <StyledInputContainer>
+          <StyledInput
+            value={personFormData.phoneNumber}
+            onChange={handleInputChange}
+            type="text"
+            name="phoneNumber"
+            required
+          />
+          <StyledLabel htmlFor="phoneNumber">Phone number</StyledLabel>
+        </StyledInputContainer>
+
         <StyledButton
           onClick={onSave}
           disabled={
@@ -72,48 +84,85 @@ export default function Add() {
 }
 
 const StyledFormContainer = styled('div')`
-  width: 350px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0000007f;
-  box-shadow: 0 15px 25px #00000099;
+  width: 400px;
+  padding: 40px;
+  margin: 0 10px;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
 `;
 
 const StyledForm = styled('div')`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 `;
 
-const StyledInput = styled('input')`
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 2px solid #808080;
-  font-size: 18px;
-`;
-
-const StyledButton = styled('button')`
-  align-self: center;
-  padding: 8px 20px;
-  background-color: #40486d;
-  color: #fff;
-  font-size: 20px;
-  border-radius: 8px;
-  border: none;
-
-  &:hover {
-    background-color: #2a3357;
-  }
-
-  &:disabled {
-    background-color: #d5d1d2;
-  }
+const StyledInputContainer = styled('div')`
+  position: relative;
 `;
 
 const StyledTitle = styled('h2')`
   color: #fff;
   text-align: center;
+`;
+
+const StyledLabel = styled('label')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.3s;
+`;
+
+const StyledInput = styled('input')`
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+
+  &:focus ~ label,
+  &:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+`;
+
+const StyledButton = styled('button')`
+  align-self: center;
+  padding: 8px 40px;
+  background-color: transparent;
+  border: 1px solid #03e9f4;
+  color: #03e9f4;
+  letter-spacing: 1px;
+  font-size: 20px;
+  border-radius: 8px;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: #01a9b2;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow:
+      0 0 5px #01a9b2,
+      0 0 25px #01a9b2;
+  }
+
+  &:disabled {
+    background-color: #d5d1d2;
+    border: 1px solid transparent;
+    color: #343434;
+    box-shadow: none;
+  }
 `;
