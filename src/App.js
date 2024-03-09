@@ -1,24 +1,24 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import styled from "styled-components";
-import Home from "./page/Home";
-import Add from "./page/Add";
-import List from "./page/List";
-import "./App.css";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import styled from 'styled-components';
+import Home from './page/Home';
+import Add from './page/Add';
+import List from './page/List';
+import './App.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <Home />,
     },
     {
-      path: "/add",
+      path: '/add',
       element: <Add />,
     },
     {
-      path: "/list",
+      path: '/list',
       element: <List />,
     },
   ]);
@@ -32,8 +32,8 @@ function App() {
   );
 }
 
-const StyledAppContainer = styled("div")`
-  background-color: #7585b6;
+const StyledAppContainer = styled('div')`
+  background: linear-gradient(#141e30, #243b55);
   width: 100vw;
   height: 100vh;
   display: flex;
