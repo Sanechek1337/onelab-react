@@ -33,6 +33,8 @@ export default function Add() {
   return (
     <StyledFormContainer>
       <StyledForm>
+        <StyledTitle>Add person</StyledTitle>
+
         <StyledInput
           value={personFormData.name}
           onChange={handleInputChange}
@@ -75,9 +77,9 @@ const StyledFormContainer = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000038;
-  border: 3px solid #2a3357;
-  border-radius: 12px;
+  background: #0000007f;
+  box-shadow: 0 15px 25px #00000099;
+  border-radius: 10px;
 `;
 
 const StyledForm = styled('div')`
@@ -109,4 +111,9 @@ const StyledButton = styled('button')`
   &:disabled {
     background-color: #d5d1d2;
   }
+`;
+
+const StyledTitle = styled('h2')`
+  color: #fff;
+  text-align: center;
 `;
