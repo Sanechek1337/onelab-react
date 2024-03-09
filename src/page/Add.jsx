@@ -24,6 +24,14 @@ export default function Add() {
   };
 
   const onSave = () => {
+    if (
+      personFormData.name.trim() === '' ||
+      personFormData.surname.trim() === '' ||
+      personFormData.phoneNumber.trim() === ''
+    ) {
+      return;
+    }
+
     dispatch(addPerson(personFormData));
 
     alert(`Пользователь ${personFormData.name} добавлен`);
