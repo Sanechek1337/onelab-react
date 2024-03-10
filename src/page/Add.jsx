@@ -25,19 +25,25 @@ export default function Add() {
   };
 
   const onSave = () => {
+    const toastPosition =
+      window.innerWidth < 500 ? 'top-center' : 'bottom-right';
+
     if (
       personFormData.name.trim() === '' ||
       personFormData.surname.trim() === '' ||
       personFormData.phoneNumber.trim() === ''
     ) {
-      toast.error('Please fill in all fields');
+      toast.error('Please fill in all fields', { position: toastPosition });
     } else {
       dispatch(addPerson(personFormData));
 
       toast(
         <div>
           User <StyledName>{personFormData.name}</StyledName> has been added
-        </div>
+        </div>,
+        {
+          position: toastPosition,
+        }
       );
 
       setPersonFormData({ name: '', surname: '', phoneNumber: '' });

@@ -29,7 +29,6 @@ function App() {
       <Provider store={store}>
         <RouterProvider router={router} />
         <Toaster
-          position="bottom-right"
           toastOptions={{
             style: {
               backgroundColor: '#01a9b2',
@@ -48,7 +47,7 @@ function App() {
 
 const StyledAppContainer = styled('div')`
   background: linear-gradient(#141e30, #243b55);
-  width: 100vw;
+  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   justify-content: center;
