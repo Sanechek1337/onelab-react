@@ -17,9 +17,16 @@ export const personsSlice = createSlice({
         (person) => person.id !== action.payload.id
       );
     },
+    editPerson: (state, action) => {
+      state.personsList = state.personsList.map((person) =>
+        person.id === action.payload.id
+          ? { ...person, ...action.payload }
+          : person
+      );
+    },
   },
 });
 
-export const { addPerson, removePerson } = personsSlice.actions;
+export const { addPerson, removePerson, editPerson } = personsSlice.actions;
 
 export default personsSlice.reducer;
