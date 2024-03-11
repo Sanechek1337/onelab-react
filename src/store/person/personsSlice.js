@@ -14,7 +14,7 @@ export const personsSlice = createSlice({
     },
     removePerson: (state, action) => {
       state.personsList = state.personsList.filter(
-        (person) => person.id !== action.payload.id
+        (person) => person.id !== action.payload
       );
     },
     editPerson: (state, action) => {
