@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Person from '../components/Person';
+import NavigationBlock from '../components/NavigationBlock';
 
 export default function List() {
   const personsList = useSelector((state) => state.persons.personsList);
@@ -27,14 +28,18 @@ export default function List() {
               ))}
             </tbody>
           ) : (
-            <StyledNoDataRow>
-              <td colSpan="4" style={{ padding: '20px 0' }}>
-                No data
-              </td>
-            </StyledNoDataRow>
+            <tbody>
+              <StyledNoDataRow>
+                <td colSpan="4" style={{ padding: '20px 0' }}>
+                  No data
+                </td>
+              </StyledNoDataRow>
+            </tbody>
           )}
         </StyledTable>
       </StyledTableContainer>
+
+      <NavigationBlock routePath="/add" routeTitle="Add person" />
     </UsersListContainer>
   );
 }
