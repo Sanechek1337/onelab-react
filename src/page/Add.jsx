@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import toast from 'react-hot-toast';
 import { addPerson } from '../store/person/personsSlice';
+import NavigationBlock from '../components/NavigationBlock';
 
 export default function Add() {
-  const navigateTo = useNavigate();
   const dispatch = useDispatch();
 
   const [personFormData, setPersonFormData] = useState({
@@ -99,6 +98,8 @@ export default function Add() {
           Save
         </StyledButton>
       </StyledForm>
+
+      <NavigationBlock routePath="/list" routeTitle="Users list" />
     </StyledFormContainer>
   );
 }
